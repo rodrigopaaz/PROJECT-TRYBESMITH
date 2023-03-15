@@ -11,14 +11,14 @@ class LoginController {
   public getAll() : Promise<IUser[]> {
     return this.userService.getAll();   
   }
-  
+
   public login = async (req: Request, res: Response) => {
     const { body } = req;
     try {
       return res.status(statusCodes.OK).json({ token: createToken(body) });
     } catch (error) {
       return res.status(500).json(error);
-    }
+    } 
   };
 }
 
