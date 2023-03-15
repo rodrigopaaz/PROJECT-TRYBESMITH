@@ -9,6 +9,10 @@ class UserService {
     this.model = new UserModel(connection);
   }
 
+  public getAll() : Promise<IUser[]> {
+    return this.model.getAll();   
+  } 
+
   public create(user: IUser): Promise<IUser> {
     return this.model.create(user);
   }

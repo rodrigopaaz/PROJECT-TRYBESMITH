@@ -8,6 +8,6 @@ const userControler = new UserControler();
 
 router.post('/', userControler.create);
 
-/* router.get('/', userControler.getAll); */
+router.get('/', userControler.getAll);
 
 export default router;

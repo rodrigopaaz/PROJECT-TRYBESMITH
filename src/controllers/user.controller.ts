@@ -16,6 +16,11 @@ class UserController {
       return res.status(500).json(error);
     }
   };
+
+  public getAll = async (req: Request, res: Response) => {
+    const getUsers = await this.userService.getAll();
+    return res.status(statusCodes.OK).json(getUsers);
+  };
 }
 
 export default UserController;
