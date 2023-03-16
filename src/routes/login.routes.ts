@@ -8,6 +8,6 @@ const router = Router();
 
 const loginControler = new LoginControler();
 
-router.post('/', validate, ValidadeLogin, loginControler.login);
+router.post('/', validate.checkLogin, ValidadeLogin, loginControler.login);
 
 export default router;
