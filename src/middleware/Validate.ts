@@ -19,6 +19,12 @@ const productSchema = Joi.object().keys({
   amount: Joi.string().min(3).required(),  
 });
 
+const orderSchema = Joi.object().keys({ 
+  productsIds: Joi.array().min(1).required().messages({
+    'array.min': '"productsIds" must include only numbers',
+  }),
+});
+
 const checkLogin = async (req: Request, res: Response, next: NextFunction) => {
   const { body } = req;
   const validation = loginSchema.validate({ ...body });
@@ -57,8 +63,22 @@ const checkProducts = async (req: Request, res: Response, next: NextFunction) =>
   next();
 };
 
+const checkOrder = async (req: Request, res: Response, next: NextFunction) => {
+  const { body } = req;
+  const validation = orderSchema.validate({ productsIds: body.productsIds });
+  if (validation.error) {
+    const { message } = validation.error;
+    const errorType = message.includes('required');
+    const error = errorType ? 400 : 422;
+    return res.status(error)
+      .json({ message });
+  }
+
+  next();
+};
+
 const validateFields = {
-  checkLogin, checkProducts, checkUser,
+  checkLogin, checkProducts, checkUser, checkOrder,
 };
 
 export default validateFields;

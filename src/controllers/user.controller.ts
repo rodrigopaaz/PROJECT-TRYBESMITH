@@ -11,7 +11,7 @@ class UserController {
 
     const userCreated = await this.userService.create(user);
     try {
-      return res.status(statusCodes.CREATED).json({ token: createToken(userCreated) });
+      return res.status(statusCodes.CREATED).json({ token: createToken(userCreated), userCreated });
     } catch (error) {
       return res.status(500).json(error);
     }

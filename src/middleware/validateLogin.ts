@@ -12,6 +12,7 @@ const ValidadeLogin = async (req: Request, res: Response, next: NextFunction) =>
     return res.status(statusCodes.UNAUTHORIZED)
       .json({ message: 'Username or password invalid' }); 
   }
+  body.userData = validateUser;
   next();
 };
 

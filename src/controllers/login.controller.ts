@@ -15,7 +15,8 @@ class LoginController {
   public login = async (req: Request, res: Response) => {
     const { body } = req;
     try {
-      return res.status(statusCodes.OK).json({ token: createToken(body) });
+      return res.status(statusCodes.OK).json({ 
+        token: createToken(body.userData) });
     } catch (error) {
       return res.status(500).json(error);
     } 

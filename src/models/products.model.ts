@@ -27,4 +27,13 @@ SELECT * FROM Trybesmith.products;
 `);
     return rows;
   }
+
+  public async update(orderId:number, productId:number) {
+    await this.connection.execute<ResultSetHeader & IProduct>(
+      `UPDATE Trybesmith.products
+      SET order_id = ?
+      WHERE id = ? `,
+      [orderId, productId],
+    );
+  }
 }
