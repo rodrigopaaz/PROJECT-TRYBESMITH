@@ -1,4 +1,4 @@
-import { IOrder, IProduct } from '../interface';
+import { IOrder } from '../interface';
 import connection from '../models/connection';
 import OrderModel from '../models/order.model';
 import ProductModel from '../models/products.model';
@@ -18,8 +18,7 @@ class OrderService {
   }
   
   public async create(order: IOrder & number, productIds:number[]) {
-    const result = await this.model.create(order);
-     
+    const result = await this.model.create(order);    
     await Promise.all(productIds.map((e:number) => 
       this.productModel.update(result, e))); 
     return result;
