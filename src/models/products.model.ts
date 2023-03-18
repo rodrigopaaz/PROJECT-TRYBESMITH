@@ -29,6 +29,8 @@ SELECT * FROM Trybesmith.products;
   }
 
   public async update(orderId:number, productId:number) {
+    console.log(orderId, 'order');
+    console.log(productId, 'products');
     await this.connection.execute<ResultSetHeader & IProduct>(
       `UPDATE Trybesmith.products
       SET order_id = ?

@@ -12,9 +12,9 @@ class OrderController {
 
   public create = async (req: Request, res: Response) => {
     const { productsIds, getData } = req.body;
-    console.log(req.body);
-    Promise.all(productsIds.map((e:number) => 
-      this.orderService.create(getData.data.id, e)));
+
+    await this.orderService.create(getData.data.id, productsIds);
+
     return res.status(statusCodes.CREATED).json(
       {
         userId: getData.data.id,

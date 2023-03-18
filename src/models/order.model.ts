@@ -27,7 +27,7 @@ export default class OrderModel {
     );
 
     const { insertId } = result;
-
+     
     return insertId;
   }
 }
